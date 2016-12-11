@@ -64,5 +64,4 @@
     2. 使用：
     本地：jupyter notebook
     供远程使用：jupyter notebook --ip=0.0.0.0 --no-browser
-
-    
+    常驻后台：nohup jupyter notebook --ip=0.0.0.0 --no-browser &
