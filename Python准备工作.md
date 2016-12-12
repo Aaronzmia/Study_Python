@@ -45,6 +45,12 @@
         创建虚拟环境：$ pyenv virtualenv $bash_version $name
     5. uninstall：
         卸载某个版本，包括虚拟环境
+    6. versions：
+        查看当前 pyenv 可检测到的所有版本，处于激活状态的版本前以 * 标示
+    7. version： 
+        查看当前处于激活状态的Python版本
+    9. install：
+        --list：查看所有可安装版本
 
 # 安装ipython
 ## ipython: python交互式shell的增强工具
@@ -64,5 +70,6 @@
     2. 使用：
     本地：jupyter notebook
     供远程使用：jupyter notebook --ip=0.0.0.0 --no-browser
+    常驻后台使用：nohup jupyter notebook --ip=0.0.0.0 --no-browser &
     
     
