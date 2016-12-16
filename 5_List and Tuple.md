@@ -266,7 +266,8 @@ NameError: name 't1' is not defined
 ### 元组方法
 * count()
 * index()
-**同列表使用**
+**同列表使用方法一致** 
+
 ## 命名元组 namedtuple
 * 定义：collections.namedtuple(typename, field_names, verbose=False, rename=False) 
     * typename：要定义的元组名称
@@ -288,5 +289,5 @@ Out[11]: 'Tom'
 In [12]: Tom.age
 Out[12]: 20
 
-**同元组一样，元素不可变**
+同元组一样，元素不可变
 ```
