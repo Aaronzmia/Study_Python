@@ -268,7 +268,7 @@ NameError: name 't1' is not defined
 * index()  
 **同列表使用方法一致** 
 
-### 命名元组 namedtuple
+## 命名元组 namedtuple
 * 定义：collections.namedtuple(typename, field_names, verbose=False, rename=False) 
     * typename：要定义的元组名称
     * field_names：定义元组中元素的名称
