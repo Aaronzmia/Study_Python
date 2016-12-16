@@ -130,6 +130,21 @@ ValueError                                Traceback (most recent call last)
 
 ValueError: list.remove(x): x not in list
 ```
+### 删除列表
+* del()：删除整个列表
+```
+In [1]: lst = [1, 2, 3, 2, 4, 2]
+
+In [2]: del(lst)
+
+In [3]: lst
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-24034128ed43> in <module>()
+----> 1 lst
+
+NameError: name 'lst' is not defined
+```
 ### 统计元素
 * count(value)：返回列表中value出现的次数
 ```
@@ -176,24 +191,102 @@ Out[30]: [4, 3, 2, 2, 2, 1]
 * 深拷贝：copy.deepcopy()，拷贝对象及其子对象
 ```
 import copy  
-a = [1, 2, 3, 4, ['a', 'b']] #原始对象  
+a = [1, 2, 3, 4, [1, 2]] #原始对象  
 
-b = a #赋值，传对象的引用  
-c = copy.copy(a) #对象拷贝，浅拷贝  
-d = copy.deepcopy(a) #对象拷贝，深拷贝  
+b = a # 赋值，传引用  
+c = copy.copy(a) # 浅拷贝  
+d = copy.deepcopy(a) # 深拷贝  
 
 a.append(5) #修改对象a  
-a[4].append('c') #修改对象a中的['a', 'b']数组对象  
+a[4].append(3) # a[4]的列表中添加元素  
 
 print('a = ', a)  
 print('b = ', b)  
 print('c = ', c)  
 print('d = ', d)  
 
-a =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
-b =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
-c =  [1, 2, 3, 4, ['a', 'b', 'c']]
-d =  [1, 2, 3, 4, ['a', 'b']]
+a =  [1, 2, 3, 4, [1, 2, 3], 5]
+b =  [1, 2, 3, 4, [1, 2, 3], 5]
+c =  [1, 2, 3, 4, [1, 2, 3]]
+d =  [1, 2, 3, 4, [1, 2]]     # deepcopy未改变
 ```
 
+# 元组
+## 初始化定义
+```
+t = tuple()
+t = ()
+t = (1, 2, 3)
+t = tuple(range())
+```
+## 元组与列表的不同
+**元组中的元素不可修改**
+```
+In [1]: t = (1, 2, 3, 4, 5)
 
+In [2]: t[1]
+Out[2]: 2
+
+In [3]: t[1] = 5
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-3-e9323da3946c> in <module>()
+----> 1 t[1] = 5
+
+TypeError: 'tuple' object does not support item assignment
+```
+## 元组的方法
+### 修改元组
+* \+：元组中的元素不可以修改，但是可以使用‘+’号连接组合，但是返回的是新元组
+```
+In [1]: t1 = (1, 2, 3)
+
+In [2]: t2 = ('a', 'b', 'c')
+
+In [3]: t1 + t2
+Out[3]: (1, 2, 3, 'a', 'b', 'c')
+```
+### 删除元组
+* del：del可以删除整个元组
+```
+In [4]: t1
+Out[4]: (1, 2, 3)
+
+In [5]: del(t1)
+
+In [6]: t1
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-6-7533422ecb03> in <module>()
+----> 1 t1
+
+NameError: name 't1' is not defined
+
+```
+### 元组方法
+* count()
+* index()
+**同列表使用**
+## 命名元组 namedtuple
+* 定义：collections.namedtuple(typename, field_names, verbose=False, rename=False) 
+    * typename：要定义的元组名称
+    * field_names：定义元组中元素的名称
+    * rename：如果元素名称中含有python的关键字，则必须设置为rename=True
+```
+IIn [6]: Stu = collections.namedtuple('studen', 'name, age, sex')
+
+In [7]: Stu = collections.namedtuple('student', 'name, age, sex')
+
+In [8]: Tom = Stu(name='Tom', age=20, sex='male')
+
+In [9]: Tom
+Out[9]: student(name='Tom', age=20, sex='male')
+
+In [11]: Tom.name
+Out[11]: 'Tom'
+
+In [12]: Tom.age
+Out[12]: 20
+
+**同元组一样，元素不可变**
+```
