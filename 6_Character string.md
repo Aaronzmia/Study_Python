@@ -300,7 +300,7 @@ S.format(*args, **kwargs) -> str
 In [1]: 'i love {}'.format('it')
 Out[1]: 'i love it'
 
-In [2]: 'love {}, love {} {}'.format('her','her','dog')
+In [2]: 'love {}, love {} {}'.format('her','her','dog')  # 按照顺序，使用位置参数
 Out[2]: 'love her, love her dog'
 
 In [4]: 'love {0}, love {1} {2}'.format('her','her','dog')
