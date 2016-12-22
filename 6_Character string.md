@@ -260,8 +260,101 @@ In [27]: 'love'.isidentifier()
 Out[27]: True
 ```
 
+## 字符串格式化
+* join连接
+* '+'连接
+* printf style
+* format方法
+### printf style
+**基本的用法是将一个值插入到一个有字符串格式符(如%s，%d)的字符串中**
+* Python字符串格式化符号 http://www.runoob.com/python3/python3-string.html
+```
+    %%   输出一个%号
+    %c	 字符及其ASCII码
+    %s	 字符串
+    %d	 整数
+    %u	 无符号整型
+    %o	 无符号八进制数
+    %x	 无符号十六进制数
+    %X	 无符号十六进制数，大写字符
+    %f	 浮点数字，可指定小数点后的精度 .3%f
+    %e	 用科学计数法浮点数
+    %E	 作用同%e，用科学计数法格式化浮点数
+    %g	 %f和%e的简写，自动选择
+    %G	 %f 和 %E 的简写，自动选择
+    %p	 用十六进制数格式化变量的地址
 
+    \*   定义占位符宽度，%8d
+    .*   定义小数点后的位数
+    -    左对齐，%-d
+    0    补0
+```
 
+### format方法
+**Python3更推荐的方法**
+#### 基本用法
+S.format(*args, **kwargs) -> str
+    Return a formatted version of S, using substitutions from args and kwargs.
+    The substitutions are identified by braces ('{' and '}').
+```
+In [1]: 'i love {}'.format('it')
+Out[1]: 'i love it'
 
+In [2]: 'love {}, love {} {}'.format('her','her','dog')
+Out[2]: 'love her, love her dog'
+
+In [4]: 'love {0}, love {1} {2}'.format('her','her','dog')
+Out[4]: 'love her, love her dog'
+
+In [6]: 'love {0}, love {0} {1}'.format('her','dog')
+Out[6]: 'love her, love her dog'
+
+In [7]: 'love {name}, love {name} {animal}'.format(name='her',animal='dog')    # 通过关键字参数
+Out[7]: 'love her, love her dog'
+
+In [8]: test = ['her','dog']
+
+In [10]: 'love {test[0]}, love {test[0]} {test[1]}'.format(test)
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+<ipython-input-10-6367dd35a8d1> in <module>()
+----> 1 'love {test[0]}, love {test[0]} {test[1]}'.format(test)
+
+KeyError: 'test'
+
+In [11]: 'love {0[0]}, love {0[0]} {0[1]}'.format(test)    # 注意
+Out[11]: 'love her, love her dog'
+```
+#### 格式限定符 {:[填充]}
+```
+f/d/s/b/d/o/x：同printf      
+^      居中
+<      左对齐
+>      右对齐
+*      占位符宽度
+.*     精度
+填充   只能是单个字符，不指定使用空格填充
+```
+```
+In [14]: print('1: {0:18} {1:18} {2:<18}'.format('i', 'love', 'python'))
+1: i                  love               python            
+
+In [15]: print('1: {0:18} {1:18} {2:<18}'.format('i', 'lovelove', 'python'))
+1: i                  lovelove           python            
+
+In [16]: print('1: {0:18s} {1:18d} {2:<18}'.format('i', 'lovelove', 'python'))
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-16-fed3e702fab8> in <module>()
+----> 1 print('1: {0:18s} {1:18d} {2:<18}'.format('i', 'lovelove', 'python'))
+
+ValueError: Unknown format code 'd' for object of type 'str'
+
+In [17]: print('1: {0:18s} {1:18d} {2:<18}'.format('i', 1525, 'python'))     # 数字右对齐
+1: i                                1525 python 
+
+In [21]: print('1: {0:18s} {1:18.3f} {2:<18}'.format('i', 1525.555555, 'python'))
+1: i                            1525.556 python
+```
 
 
