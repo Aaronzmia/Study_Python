@@ -18,6 +18,7 @@
                     <td>
                         <a name="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a name="delete" href="{% url 'course:delete_course' course.id %}"><span class="glyphicon glyphicon-trash" style="margin-left: 10px "></span></a>
+                        <a name="delete" href="{% url 'course:list_lessons' course.id %}"><span class="glyphicon glyphicon-search" style="margin-left: 10px "></span></a>
                     </td>
                 </tr>
             {% endfor %}
